@@ -36,7 +36,7 @@ class QuestionTableViewCell: UITableViewCell {
         questionLabel <- [
             Top(0),
             CenterX(0).to(self),
-            Width(frame.width*0.9),
+            Width(frame.width * 0.9),
             Height(frame.height)
         ]
     }

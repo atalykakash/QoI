@@ -23,7 +23,8 @@ class MainView: UIView{
                          Book(title: "Human", image: "man"),
                          Book(title: "Creation", image: "creation"),
                          Book(title: "Fiqh", image: "fiqh"),
-                         Book(title: "Miscellaneous", image: "miscellaneous"),]
+                         Book(title: "Miscellaneous", image: "miscellaneous"),
+                         Book(title: "About", image: "aboutus")]
     
     var questions: [Question] = []
     weak var didSelectDelegate: DidSelect?
@@ -60,11 +61,11 @@ class MainView: UIView{
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(QuestionTableViewCell.self, forCellReuseIdentifier: "QuestionCell")
-        tableView.rowHeight = Constants.screenHeight*0.1
+        tableView.rowHeight = Constants.screenHeight * 0.1
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.sectionHeaderHeight = Constants.screenHeight*0.5
+        tableView.sectionHeaderHeight = Constants.screenHeight * 0.5
         return tableView
     }()
     
@@ -93,21 +94,21 @@ class MainView: UIView{
             Top(0),
             Left(0),
             Width(Constants.screenWidth),
-            Height(Constants.screenHeight*0.5)
+            Height(Constants.screenHeight * 0.5)
         ]
         
         collectionView <- [
             Top(0),
             Left(0),
             Width(Constants.screenWidth),
-            Height(Constants.screenHeight*0.5)
+            Height(Constants.screenHeight * 0.5)
         ]
         
         tableView <- [
             Top(0).to(collectionView),
             Left(0),
             Width(Constants.screenWidth),
-            Height(Constants.screenHeight*0.5)
+            Height(Constants.screenHeight * 0.5)
         ]
     }
     
@@ -154,6 +155,9 @@ extension MainView: UITableViewDelegate {
 extension MainView: UICollectionViewDelegate, NVActivityIndicatorViewable {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (indexPath.row == 7) {
+            UIApplication.shared.open(NSURL(string: "http://www.questionsonislam.com/authors")! as URL, options: [:], completionHandler: nil)
+        }
         let activityData = ActivityData()
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         if let title = books[indexPath.row].title {
@@ -196,7 +200,7 @@ extension MainView: UICollectionViewDataSource {
 
 extension MainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(frame.height*0.08, 0, 0, 0)
+        return UIEdgeInsetsMake(frame.height * 0.08, 0, 0, 0)
     }
 }
 

@@ -56,4 +56,24 @@ struct Book {
             completion(questions)
         }
     }
+    
+    static func parseSearchQuestions(text: String, completion: @escaping ([Question]) -> ()) {
+        
+        var questions: [Question] = []
+        
+        let query = PFQuery(className: "Question")
+        query.whereKey("question", contains: text)
+        query.findObjectsInBackground { (result, error) in
+            if let objects = result {
+                for object in objects {
+                    guard let question = object["question"] as? String, let answer = object["answer"] as? String else {
+                        return
+                    }
+                    let q = Question(question: question, answer: answer)
+                    questions.append(q)
+                }
+            }
+            completion(questions)
+        }
+    }
 }

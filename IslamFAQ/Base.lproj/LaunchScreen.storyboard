@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="2r5-xi-U8V">
-                                <rect key="frame" x="46" y="120" width="228" height="348"/>
+                                <rect key="frame" x="46" y="150" width="228" height="288"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="2r5-xi-U8V" secondAttribute="bottom" constant="100" id="2EV-iY-x9v"/>
-                            <constraint firstItem="2r5-xi-U8V" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="100" id="LVw-vA-xA1"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="2r5-xi-U8V" secondAttribute="bottom" constant="130" id="2EV-iY-x9v"/>
+                            <constraint firstItem="2r5-xi-U8V" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="130" id="LVw-vA-xA1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2r5-xi-U8V" secondAttribute="trailing" constant="30" id="iBh-CH-v46"/>
                             <constraint firstItem="2r5-xi-U8V" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="xmL-dy-IJc"/>
                         </constraints>

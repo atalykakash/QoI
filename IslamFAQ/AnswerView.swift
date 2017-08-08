@@ -21,7 +21,6 @@ class AnswerView: UIView {
             if let questionText = question?.questionTitle, let answerText = question?.answerTitle {
                 questionTextView.text = questionText
                 questionTextView.sizeToFit()
-                print(questionTextView.frame.height)
                 answerTextView.text = answerText
                 answerTextView.sizeToFit()
                 updateConstraints()
@@ -52,7 +51,6 @@ class AnswerView: UIView {
     }()
     
     func setup() {
-        
         self.addSubview(scrollView)
         self.scrollView.addSubview(questionTextView)
         self.scrollView.addSubview(answerTextView)
@@ -71,22 +69,27 @@ class AnswerView: UIView {
         scrollView <- Edges()
         
         questionTextView <- [
-            Top(),
-            Left(0),
-            Width(Constants.screenWidth),
-            Height(questionTextView.frame.height)
+            Top(66),
+            Width(Constants.screenWidth * 0.95),
+            Height(questionTextView.frame.height),
+            CenterX(0).to(self)
         ]
         
         questionTextView.layoutIfNeeded()
+        questionTextView.textAlignment = .center
+        questionTextView.backgroundColor = .red
         
         answerTextView <- [
-            Top(0).to(questionTextView),
-            Left(0),
-            Width(Constants.screenWidth),
+            Top().to(questionTextView),
+            CenterX(0).to(self),
+            Width(Constants.screenWidth * 0.95),
             Height(answerTextView.frame.height)
         ]
         
         answerTextView.layoutIfNeeded()
+        
+        scrollView.setContentOffset(CGPoint.zero, animated: false)
+        scrollView.contentSize = CGSize(width: Constants.screenWidth * 0.8, height: answerTextView.frame.maxY + questionTextView.frame.maxY + 60)
     }
     
     required init?(coder aDecoder: NSCoder) {
