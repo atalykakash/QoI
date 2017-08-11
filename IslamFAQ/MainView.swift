@@ -15,7 +15,7 @@ protocol DidSelect: class {
     func selectedRow(question: Question)
 }
 
-class MainView: UIView{
+class MainView: UIView {
     
     var books: [Book] = [Book(title: "Principles of Belief", image: "belief"),
                          Book(title: "Islam", image: "cami"),
@@ -97,19 +97,7 @@ class MainView: UIView{
             Height(Constants.screenHeight * 0.5)
         ]
         
-        collectionView <- [
-            Top(0),
-            Left(0),
-            Width(Constants.screenWidth),
-            Height(Constants.screenHeight * 0.5)
-        ]
-        
-        tableView <- [
-            Top(0).to(collectionView),
-            Left(0),
-            Width(Constants.screenWidth),
-            Height(Constants.screenHeight * 0.5)
-        ]
+        tableView <- Edges()
     }
     
     private func parseAllQuestions() {
@@ -142,13 +130,28 @@ extension MainView: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return collectionView
+    }
+    
 }
 
-extension MainView: UITableViewDelegate {
+extension MainView: UITableViewDelegate, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectDelegate?.selectedRow(question: questions[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollPos = scrollView.contentOffset
+        
+        if scrollPos.y >= 40 /* or CGRectGetHeight(yourToolbar.frame) */ {
+            // Fully hide your toolbar
+        } else {
+            // Slide it up incrementally, etc.
+        }
     }
 }
 

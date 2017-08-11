@@ -28,26 +28,12 @@ class AnswerViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = question.questionTitle
         self.navigationController?.navigationBar.backItem?.title = ""
-        
+        answerView.questionTextView.sizeToFit()
         answerView <- Edges()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        textViewDidChange(textView: answerView.questionTextView)
-    }
-    
-    func adjustContentSize(tv: UITextView){
-        let deadSpace = tv.bounds.size.height - tv.contentSize.height
-        let inset = max(0, deadSpace/2.0)
-        tv.contentInset = UIEdgeInsetsMake(inset, tv.contentInset.left, inset, tv.contentInset.right)
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-        self.adjustContentSize(tv: textView)
     }
 }

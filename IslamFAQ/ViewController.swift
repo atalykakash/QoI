@@ -69,7 +69,7 @@ extension ViewController: DidSelect {
 extension ViewController: UISearchControllerDelegate,UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        self.mainView.reloadInputViews()
+        self.mainView.tableView.easy_reload()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
