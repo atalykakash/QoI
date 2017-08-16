@@ -77,7 +77,6 @@ class AnswerView: UIView {
         
         questionTextView.layoutIfNeeded()
         questionTextView.textAlignment = .center
-        questionTextView.backgroundColor = .red
         
         answerTextView <- [
             Top().to(questionTextView),

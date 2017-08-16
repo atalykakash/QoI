@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: configuration)
         
+        UINavigationBar.appearance().backgroundColor = .white
+        
         configureMainPage()
         return true
     }
