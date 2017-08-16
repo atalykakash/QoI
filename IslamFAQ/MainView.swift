@@ -48,7 +48,7 @@ class MainView: UIView {
     }()
     
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight*0.5), collectionViewLayout: self.layout)
         collectionView.register(BooksCollectionViewCell.self, forCellWithReuseIdentifier: "TopicCell")
         collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,8 +81,9 @@ class MainView: UIView {
     
     private func setup() {
         self.addSubview(picImageView)
-        self.addSubview(collectionView)
         self.addSubview(tableView)
+        
+        tableView.tableHeaderView = collectionView
         
         parseAllQuestions()
     }
@@ -130,11 +131,6 @@ extension MainView: UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return collectionView
-    }
-    
 }
 
 extension MainView: UITableViewDelegate, UIScrollViewDelegate {
